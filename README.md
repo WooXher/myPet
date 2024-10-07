@@ -11,3 +11,25 @@
 <p>* 사용자는 회원을 등록하면 회원조회, 수정, 탈퇴가 가능합니다.</p>
 <p>* 등록된 사용자는 자신의 반려동물을 등록, 수정, 삭제, 조회가 가능합니다.</p>
 <p>* 다른 회원의 반려동물을 확인할 수 있습니다.</p>
+
+<hr>
+<h2>REST API 설계해보기</h2>
+
+<b>반려동물</b>
+<p>반려동물 등록 &nbsp; POST /api/v1/pets</p>
+<p>반려동물 목록 조회 &nbsp; GET /api/v1/pets</p>
+<p>반려동물 상세 조회 &nbsp; GET /api/v1/pet/{pet-id}</p>
+<p>반려동물 정보 수정 &nbsp; PUT /api/v1/pet/{pet-id}</p>
+<p>반려동물 삭제 &nbsp; DELETE /api/v1/pet/{pet-id} </p>
+<p>타인 반려동물 조회 &nbsp; GET /api/v1/pet/{member-id}/{pet-id}</p>
+
+<b>회원</b>
+<p>회원정보 등록 &nbsp; POST /api/v1/member</p>
+<p>회원정보 상세 조회 &nbsp; GET /api/v1/pet/{member-id}</p>
+<p>회원정보 정보 수정 &nbsp; PUT /api/v1/pet/{member-id}</p>
+<p>회원탈퇴 &nbsp; DELETE /api/v1/pet/{member-id}</p>
+
+
+
+
+
