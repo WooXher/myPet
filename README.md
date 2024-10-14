@@ -26,9 +26,9 @@
 
 <b>회원</b>
 <p>회원정보 등록 &nbsp; POST /api/v1/member</p>
-<p>회원정보 상세 조회 &nbsp; GET /api/v1/pet/{member-id}</p>
-<p>회원정보 정보 수정 &nbsp; PUT /api/v1/pet/{member-id}</p>
-<p>회원탈퇴 &nbsp; DELETE /api/v1/pet/{member-id}</p>
+<p>회원정보 상세 조회 &nbsp; GET /api/v1/member/{member-id}</p>
+<p>회원정보 정보 수정 &nbsp; PUT /api/v1/member/{member-id}</p>
+<p>회원탈퇴 &nbsp; DELETE /api/v1/member/{member-id}</p>
 
 
 
