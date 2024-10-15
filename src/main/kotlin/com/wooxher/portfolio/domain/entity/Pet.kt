@@ -18,6 +18,11 @@ class Pet(
     var age: Int = age
     var breed: String = breed
 
+//    @ManyToOne(
+//        fetch = FetchType.LAZY
+//    )
+//    @JoinColumn(name = "member_id")
+//    var member : Member = member
 
     fun update(name: String, age: Int, breed: String){
         this.name = name

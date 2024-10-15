@@ -28,9 +28,9 @@ class PresentationController(
         return presentationService.getPets(id)
     }
 
-//    @GetMapping("/v1/pet/{member-id}/{pet-id}")
-//    fun getMemberPets(@PathVariable("member-id") memberId: Long,
-//                      @PathVariable("pet-id") petId: Long){
-//        return presentationService.getMemberPets(memberId, petId)
-//    }
+    @GetMapping("/v1/pet/{member-id}/{pet-id}")
+    fun getMemberPet(@PathVariable("member-id") memberId: Long,
+                      @PathVariable("pet-id") petId: Long): Pet?{
+        return presentationService.getMemberPet(memberId, petId)
+    }
 }

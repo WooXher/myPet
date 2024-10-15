@@ -8,10 +8,7 @@ package com.wooxher.portfolio.presentation.controller
  import org.assertj.core.api.Assertions.*
  import org.json.JSONArray
  import org.json.JSONObject
- import org.junit.jupiter.api.AfterEach
- import org.junit.jupiter.api.BeforeEach
- import org.junit.jupiter.api.DisplayName
- import org.junit.jupiter.api.TestInstance
+ import org.junit.jupiter.api.*
  import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -24,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers
  import java.nio.charset.StandardCharsets
  import java.time.LocalDate
  import kotlin.test.Test
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("[API 컨트롤러 테스트]")
@@ -34,7 +31,7 @@ class PresentationControllerTest(
     @Autowired private val petRepository: PetRepository,
 ){
 
-    val DATA_SIZE = 1
+    val DATA_SIZE = 3
 
     // 더미 엔티티 생성
     private fun createMember(n: Int): Member {
@@ -56,7 +53,7 @@ class PresentationControllerTest(
         return member
     }
 
-    @BeforeEach
+    @BeforeAll
     fun beforeEach(){
 //        println("데이터 초기화 이전 조회 시작")
 //        val beforeInit = memberRepository.findAll()
@@ -73,7 +70,7 @@ class PresentationControllerTest(
         println("데이터 초기화 종료")
     }
 
-    @AfterEach
+    @AfterAll
     fun afterEach(){
         println("데이터베이스 초기화 시작")
         memberRepository.deleteAll()
@@ -117,6 +114,22 @@ class PresentationControllerTest(
         assertThat(jsonArray.length()).isPositive()
     }
 
+    @Test
+    @DisplayName("특정 멤버의 펫 조회")
+    fun getMemberPet(){
+        val memberId:Long = 1
+        val petId:Long = 1
+        //given
+        val uri = "/api/v1/pet/$memberId/$petId"
+
+        //when
+        val result = performGet(uri)
+        val contentAsString = result.response.getContentAsString(StandardCharsets.UTF_8)
+        val jsonObject = JSONObject(contentAsString)
+
+        //then
+        assertThat(jsonObject.length()).isPositive()
+    }
     private fun performGet(uri: String): MvcResult {
         return mockMvc
             .perform(MockMvcRequestBuilders.get(uri))
@@ -132,5 +145,6 @@ class PresentationControllerTest(
             .andDo(MockMvcResultHandlers.print())
             .andReturn()
     }
+
 
 }

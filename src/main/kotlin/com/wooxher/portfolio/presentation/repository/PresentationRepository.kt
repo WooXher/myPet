@@ -5,6 +5,7 @@ import com.wooxher.portfolio.domain.entity.Pet
 import com.wooxher.portfolio.domain.repository.MemberRepository
 import com.wooxher.portfolio.domain.repository.PetRepository
 import org.springframework.stereotype.Repository
+import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 @Repository
@@ -19,9 +20,8 @@ class PresentationRepository(
         val member = memberRepository.findById(id).orElseThrow()
         return member.pets
     }
-//
-//    fun getMemberPets(memberId:Long, petId:Long):List<Pet>{
-//        val member = memberRepository.findById(memberId).orElseThrow()
-//        petRepository.findById()
-//    }
+
+    fun getMemberPet(memberId:Long,):Member {
+        return memberRepository.findByMemberIdAndPetId(memberId,).orElseThrow()
+    }
 }
