@@ -24,4 +24,20 @@ class PresentationRepository(
     fun getMemberPet(memberId:Long,):Member {
         return memberRepository.findByMemberIdAndPetId(memberId,).orElseThrow()
     }
+
+    fun addMember(member: Member): Member{
+        return memberRepository.save(member)
+    }
+
+    fun addPets(pet: Pet){
+        petRepository.save(pet)
+    }
+
+    fun deleteMember(memberId: Long){
+        memberRepository.deleteById(memberId)
+    }
+
+    fun deletePet(petId: Long){
+        petRepository.deleteById(petId)
+    }
 }

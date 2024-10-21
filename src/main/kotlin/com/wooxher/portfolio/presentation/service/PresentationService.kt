@@ -30,4 +30,44 @@ class PresentationService(
         return null
     }
 
+    @Transactional
+    fun addMember(member: Member): Member{
+        return presentationRepository.addMember(member)
+    }
+
+    @Transactional
+    fun addPetsToMember(memberId : Long, pets: List<Pet>): Member{
+        val member = presentationRepository.getMember(memberId)
+        pets.forEach { it ->
+            member.pets.add(it)
+            presentationRepository.addPets(it)
+        }
+
+        return presentationRepository.addMember(member)
+    }
+
+    @Transactional
+    fun updateMember(memberId:Long, member: Member): Member{
+        val updatedMember = presentationRepository.getMember(memberId)
+        updatedMember.update(member.name, member.age, member.address, member.birthday)
+        return presentationRepository.addMember(updatedMember)
+    }
+
+    @Transactional
+    fun updatePet(memberId:Long, petId: Long, pet: Pet): Member{
+        val member = presentationRepository.getMember(memberId)
+        val updatedPet = member.pets.get(petId.toInt() - 1)
+        updatedPet.update(pet.name, pet.age, pet.breed)
+        return presentationRepository.addMember(member)
+    }
+
+    @Transactional
+    fun deleteMember(memberId: Long){
+        presentationRepository.deleteMember(memberId)
+    }
+
+    @Transactional
+    fun deletePet(petId: Long){
+        presentationRepository.deletePet(petId)
+    }
 }

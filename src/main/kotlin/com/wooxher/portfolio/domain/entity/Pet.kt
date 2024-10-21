@@ -1,13 +1,14 @@
 package com.wooxher.portfolio.domain.entity
 
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotBlank
+import org.jetbrains.annotations.NotNull
 
 @Entity
 class Pet(
     name: String,
     age: Int,
     breed: String,
-    member: Member,
 ): BaseEntity() {
 
     @Id

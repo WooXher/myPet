@@ -1,6 +1,8 @@
 package com.wooxher.portfolio.domain.entity
 
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotBlank
+import org.jetbrains.annotations.NotNull
 import java.time.LocalDate
 
 @Entity
@@ -16,8 +18,11 @@ class Member(
     @Column(name = "member_id")
     var Id : Long? = null
 
+    @NotNull @NotBlank
     var name: String = name
+    @NotNull
     var age: Int = age
+    @NotNull @NotBlank
     var address: String = address
     var birthday: LocalDate = birthday
 
@@ -36,10 +41,9 @@ class Member(
         this.birthday = birthday
     }
 
-    fun addMemberPet(pet: MutableList<Pet>?){
+    fun addMemberPet(pet: List<Pet>?){
         if(pet!=null){
             this.pets.addAll(pet)
         }
     }
-
 }
